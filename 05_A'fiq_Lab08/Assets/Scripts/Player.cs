@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public float speed;
+    public int score;
+    public Text ScoreText;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,4 +29,21 @@ public class Player : MonoBehaviour
 
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        
+
+            if (other.gameObject.tag == "Obstacle")
+            {
+                SceneManager.LoadScene("GameOver");
+
+            }
+        if (other.gameObject.tag == "Trigger")
+        {
+            score++;
+            ScoreText.text = "Score : " + score;
+        }
+
+    }
+
 }
